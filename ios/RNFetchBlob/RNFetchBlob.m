@@ -5,10 +5,6 @@
 //
 
 #import "RNFetchBlob.h"
-#import "RCTLog.h"
-#import "RCTRootView.h"
-#import "RCTBridge.h"
-#import "RCTEventDispatcher.h"
 #import "RNFetchBlobFS.h"
 #import "RNFetchBlobNetwork.h"
 #import "RNFetchBlobConst.h"

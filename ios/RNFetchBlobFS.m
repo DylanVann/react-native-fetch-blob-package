@@ -6,15 +6,20 @@
 //  Copyright © 2016年 suzuri04x2. All rights reserved.
 //
 
-
 #import <Foundation/Foundation.h>
-#import "RCTBridge.h"
 #import "RNFetchBlob.h"
-#import "RCTEventDispatcher.h"
 #import "RNFetchBlobFS.h"
 #import "RNFetchBlobConst.h"
 #import "IOS7Polyfill.h"
 @import AssetsLibrary;
+
+#ifdef RN040_IMPORT
+#import <React/RCTBridge.h>
+#import <React/RCTEventDispatcher.h>
+#else
+#import "RCTBridge.h"
+#import "RCTEventDispatcher.h"
+#endif
 
 
 NSMutableDictionary *fileStreams = nil;
@@ -489,7 +494,7 @@ NSMutableDictionary *fileStreams = nil;
              @"size" : size,
              @"filename" : filename,
              @"path" : path,
-             @"lastModified" : [NSString stringWithFormat:@"%d", [lastModified timeIntervalSince1970]],
+             @"lastModified" : [NSNumber numberWithLong:(time_t) [lastModified timeIntervalSince1970]*1000],
              @"type" : isDir ? @"directory" : @"file"
             };
     
